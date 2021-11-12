@@ -23,4 +23,7 @@ python -m pip install --upgrade pip
 ````
 # Dash framework
 python -m pip install dash==1.13.3
+
+# Google APIs Client Library for Python
+python -m pip install google-api-python-client
 ````
