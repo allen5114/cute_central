@@ -3,11 +3,10 @@ from dash import Input, Output, State, html
 
 # Helper function to create a clickable image anchor
 def createVidButton(elementId, imgUrl):
-    return html.Div([
-        html.A(id=elementId, children=[
-            html.Img(src=imgUrl,
-                 style={'width':'480','height':'360'}
-            )
+    return html.Div(className='video-list-item', children=[
+        html.A(className='video-anchor', id=elementId, children=[
+            html.Img(className='video-thumbnail', src=imgUrl),
+            html.Img(className="video-play", src='/assets/images/play.png')
         ], href='#')
     ])
 
