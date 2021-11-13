@@ -1,6 +1,12 @@
 /* The div that contains video-anchor */
 .video-list-item {
 	position: relative;
+	padding: 10px;
+}
+
+/* video list column (has 2 columns for now) */
+.video-list-column {
+	display: inline-block;
 }
 
 /* The anchor that contains the video thumbnail and play icon */
@@ -25,7 +31,7 @@
 	width: 480;
     height: 360;
     left: 100px;
-    top: 20px;
+    top: 30px;
     position: absolute;
     opacity: 0.3;
     z-index: 1;

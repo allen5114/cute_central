@@ -10,7 +10,7 @@ from youtube_api import YoutubeAPI
 
 # import util scripts
 from utils.button_utils import getClickedElementID
-from utils.layout_utils import createVidButton, createVideoModal
+from utils.layout_utils import createVidButton, createVideoModal, createVidColumns
 from youtube_api import getVidSearchKeywords
 
 import flask
@@ -31,10 +31,8 @@ app.layout = dbc.Container(
         html.Button('puppy', id='puppy-button'),
         html.Button('kitten', id='kitten-button'),
         html.Div(id='video-list', style={'textAlign':'center'}),
-        html.Div(id='img-list', style={'textAlign':'center'}),
         createVideoModal(youtubeAPI),
-        createVidButton('anchor-1', youtubeAPI.getThumbnail(0)),
-        createVidButton('anchor-2', youtubeAPI.getThumbnail(1))
+        createVidColumns(youtubeAPI, 3)
     ]
 )
 
@@ -61,13 +59,16 @@ app.layout = dbc.Container(
 #    urls, thumbnails = youtubeAPI.search2(keywords)
 #    return html.Div(children=[createVidButton(url) for url in thumbnails])
 
+
 # Open a modal and auto play video on image anchor click
 @app.callback(
     [Output("modal-fs", "is_open"), Output("player", "children")],
-    [Input("anchor-1", "n_clicks"), Input("anchor-2", "n_clicks")],
+    [Input("anchor-1", "n_clicks"), Input("anchor-2", "n_clicks"),
+     Input("anchor-3", "n_clicks"), Input("anchor-4", "n_clicks"),
+     Input("anchor-5", "n_clicks"), Input("anchor-6", "n_clicks")],
     [State("modal-fs", "is_open")],
 )
-def toggle_modal(n1, n2, is_open):
+def toggle_modal(n1, n2, n3, n4, n5, n6, is_open):
     # update current video according to the clicked image anchor
     button_id = getClickedElementID()
     newOpenState = is_open
