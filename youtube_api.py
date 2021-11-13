@@ -8,11 +8,11 @@ class YoutubeAPI:
         
     # query for videos
     def search(self, keywords):
-        request = self.youtubeAPI.search().list(q=keywords, part='snippet', type='video', maxResults=20)
+        request = self.youtubeAPI.search().list(q=keywords, part='snippet', type='video', videoEmbeddable='true', maxResults=6)
         response = request.execute()
         urls = []
         for item in response['items']:
-            print(item['id']['videoId'])
+            #print(item['id']['videoId'])
             url = 'https://www.youtube.com/embed/' + item['id']['videoId']
             urls.append(url)
         return urls
