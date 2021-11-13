@@ -1,7 +1,7 @@
 import dash
 
-# Get the ID of the last clicked category button
-def getClickedButtonID():
+# Get the ID of the last clicked element
+def getClickedElementID():
     ctx = dash.callback_context
     if not ctx.triggered:
         return None
