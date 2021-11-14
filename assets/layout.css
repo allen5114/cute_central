@@ -35,6 +35,11 @@
 	padding: 10px;
 }
 
+#videos {
+	text-align: center;
+	background-color: #EBC999;
+}
+
 /* The div that contains video-anchor */
 .video-list-item {
 	position: relative;

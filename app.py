@@ -10,7 +10,7 @@ from youtube_api import YoutubeAPI
 
 # import util scripts
 from utils.button_utils import getClickedElementID
-from utils.layout_utils import createVidButton, createVideoModal, createSearchFilterModel, createVideos, createVidColumns, createNavBar, createFooter
+from utils.layout_utils import createVideoModal, createSearchFilterModel, createVideos, createVidColumns, createNavBar, createFooter
 from youtube_api import getVidSearchKeywords
 
 import flask
@@ -23,14 +23,11 @@ youtubeAPI = YoutubeAPI(config["Youtube"]["api_key"])
 youtubeAPI.fake_search()
 
 app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
-app.title = 'Cute Therapy'
+app.title = 'Cute Central'
 
 app.layout = html.Div([dbc.Container(
     [
         createNavBar(),
-        html.Button('puppy', id='puppy-button'),
-        html.Button('kitten', id='kitten-button'),
-        html.Div(id='video-list', style={'textAlign':'center'}),
         createVideoModal(youtubeAPI),
         createSearchFilterModel(youtubeAPI),
         createVideos(youtubeAPI, 3),
@@ -42,9 +39,8 @@ app.layout = html.Div([dbc.Container(
 def getQuery(checkedValues):
     query = ""
     if len(checkedValues) > 0:
-        query = "cute"
         for value in checkedValues:
-            query = query + " | " + value;
+            query = query + " | " + "cute" + value;
     else:
         query = "cute animals"
     return query;
@@ -88,7 +84,6 @@ def toggle_player_modal(n1, n2, n3, n4, n5, n6, is_open):
                        height="90%",
                        allow="autoplay"
     )]
-    print("open model " + str(newOpenState))
     return newOpenState, playerChildren
 
 # Open a modal for search filter
