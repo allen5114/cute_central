@@ -68,16 +68,12 @@
 
 /* video thumbnail image */
 .video-thumbnail {
-	width: 480;
-    height: 360;
 	border-radius: 25px;
 	border: 2px solid #999999
 }
 
 /* video play icon */
 .video-play {
-	width: 480;
-    height: 360;
     left: 100px;
     top: 30px;
     position: absolute;

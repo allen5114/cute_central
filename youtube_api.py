@@ -12,10 +12,13 @@ class YoutubeAPI:
         request = self.youtubeAPI.search().list(q=keywords, part='snippet', type='video', videoEmbeddable='true', maxResults=6)
         response = request.execute()
         urls = []
+        self.videoIds = []
         for item in response['items']:
             #print(item['id']['videoId'])
             url = 'https://www.youtube.com/embed/' + item['id']['videoId']
             urls.append(url)
+            self.videoIds.append(item['id']['videoId'])
+        self.populateList()
         return urls
         
     # query for videos
@@ -50,6 +53,17 @@ class YoutubeAPI:
             thumbnail = 'https://i.ytimg.com/vi/' + videoId + '/mqdefault.jpg'
             self.urls.append(url)
             self.thumbnails.append(thumbnail)
+    
+    def populateList(self):
+        self.urls = []
+        self.thumbnails = []
+        
+        for videoId in self.videoIds:
+            url = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1'
+            thumbnail = 'https://i.ytimg.com/vi/' + videoId + '/mqdefault.jpg'
+            self.urls.append(url)
+            self.thumbnails.append(thumbnail)
+    
             
     # Set current / select video    
     def setCurrentVid(self, index):

@@ -40,6 +40,12 @@ def createNavBar():
 def createFooter():
     return html.Footer([html.Span("Footer section")], className='footer')
 
+# Create list of videos
+def createVideos(youtubeAPI, rows):
+    return html.Div(id="videos", children=[createVidColumns(youtubeAPI, rows)]
+    ,style={'textAlign':'center', 'background-color':'#EBC999'})
+
+
 # Create two columns of videos with given 'rows'
 def createVidColumns(youtubeAPI, rows):
     return html.Div(children=[
@@ -47,7 +53,7 @@ def createVidColumns(youtubeAPI, rows):
                   children=[createVidButton(i, youtubeAPI.getThumbnail(i)) for i in range(rows)]),
          html.Div(className='video-list-column', 
                   children=[createVidButton(i, youtubeAPI.getThumbnail(i)) for i in range(rows, 2 * rows)]),
-    ], style={'textAlign':'center', 'background-color':'#EBC999'})
+    ])
 
 # Helper function to create a clickable image anchor
 def createVidButton(index, imgUrl):
@@ -88,7 +94,7 @@ def createSearchFilterModel(youtubeAPI):
         children=[
             dbc.Modal(
                 children=[
-                    dbc.ModalHeader(dbc.ModalTitle("Search topics")),
+                    dbc.ModalHeader(dbc.ModalTitle("")),
                     dbc.ModalBody(
                         id='filter-body', 
                         children=[

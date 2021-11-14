@@ -10,7 +10,7 @@ from youtube_api import YoutubeAPI
 
 # import util scripts
 from utils.button_utils import getClickedElementID
-from utils.layout_utils import createVidButton, createVideoModal, createSearchFilterModel, createVidColumns, createNavBar, createFooter
+from utils.layout_utils import createVidButton, createVideoModal, createSearchFilterModel, createVideos, createVidColumns, createNavBar, createFooter
 from youtube_api import getVidSearchKeywords
 
 import flask
@@ -33,35 +33,22 @@ app.layout = html.Div([dbc.Container(
         html.Div(id='video-list', style={'textAlign':'center'}),
         createVideoModal(youtubeAPI),
         createSearchFilterModel(youtubeAPI),
-        createVidColumns(youtubeAPI, 3),
+        createVideos(youtubeAPI, 3),
         createFooter(),
     ]
 )])
 
-
-## Callback upon a category button click
-#@app.callback(Output('video-list', 'children'),
-#              [Input('puppy-button', 'n_clicks'),
-#              Input('kitten-button', 'n_clicks')]
-#)
-#def category_clicked(btn1, btn2):
-#    button_id = getClickedElementID()
-#    keywords = getVidSearchKeywords(button_id)
-#    return html.Div(children=[getVidIframe(url) for url in youtubeAPI.search(keywords)])
-
-
-## Callback upon a category button click
-#@app.callback(Output('img-list', 'children'),
-#              [Input('puppy-button', 'n_clicks'),
-#              Input('kitten-button', 'n_clicks')]
-#)
-#def category_clicked2(btn1, btn2):
-#    button_id = getClickedElementID()
-#    keywords = getVidSearchKeywords(button_id)
-#    urls, thumbnails = youtubeAPI.search2(keywords)
-#    return html.Div(children=[createVidButton(url) for url in thumbnails])
-
-
+# Compose a query from checked filters
+def getQuery(checkedValues):
+    query = ""
+    if len(checkedValues) > 0:
+        query = "cute"
+        for value in checkedValues:
+            query = query + " | " + value;
+    else:
+        query = "cute animals"
+    return query;
+    
 # Open a modal and auto play video on image anchor click
 @app.callback(
     [Output("modal-fs", "is_open"), Output("player", "children")],
@@ -73,12 +60,27 @@ app.layout = html.Div([dbc.Container(
 def toggle_player_modal(n1, n2, n3, n4, n5, n6, is_open):
     # update current video according to the clicked image anchor
     button_id = getClickedElementID()
-    newOpenState = is_open
-    if button_id != None:
+    newOpenState = False
+    
+    clicked = False
+    if n1 and button_id == "anchor-1":
+       clicked = True
+    if n2 and button_id == "anchor-2":
+       clicked = True
+    if n3 and button_id == "anchor-3":
+       clicked = True
+    if n4 and button_id == "anchor-4":
+       clicked = True
+    if n5 and button_id == "anchor-5":
+       clicked = True
+    if n6 and button_id == "anchor-6":
+       clicked = True
+       
+    if clicked:
         tokens = button_id.split('-')
         if tokens[0] == 'anchor':
             youtubeAPI.setCurrentVid(int(tokens[1])-1)
-            newOpenState = not is_open
+            newOpenState = True
     
     # Update iframe source
     playerChildren = [html.Iframe(src=youtubeAPI.getCurrentUrl(),
@@ -86,18 +88,28 @@ def toggle_player_modal(n1, n2, n3, n4, n5, n6, is_open):
                        height="90%",
                        allow="autoplay"
     )]
+    print("open model " + str(newOpenState))
     return newOpenState, playerChildren
 
 # Open a modal for search filter
 @app.callback(
-    Output("search-filter-modal", "is_open"),
-    [Input("search_button", "n_clicks")],
+    [Output("search-filter-modal", "is_open"),
+     Output("videos", "children")],
+    [Input("search_button", "n_clicks"),
+     Input("search-topics-button", "n_clicks"),
+     Input("search-checklist", "value")],
     [State("search-filter-modal", "is_open")],
 )
-def toggle_search_modal(n_clicks, is_open):
-    if n_clicks:
-        return not is_open
-    return is_open
+def toggle_search_modal(n_clicks, n_clicks2, checkedValues, is_open):
+    button_id = getClickedElementID()
+    rows = 3
+    if button_id == "search_button":
+        return True, createVidColumns(youtubeAPI, rows)
+    elif button_id == "search-topics-button":
+        query = getQuery(checkedValues)
+        youtubeAPI.search(query)
+        return False, createVidColumns(youtubeAPI, rows)
+    return True, createVidColumns(youtubeAPI, rows)
  
 
 if __name__ == "__main__":
