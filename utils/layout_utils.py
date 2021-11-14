@@ -38,18 +38,20 @@ def createFooter():
     return html.Footer([html.Span("Footer section")], className='footer')
 
 # Create list of videos
-def createVideos(youtubeAPI, rows):
-    return html.Div(id="videos", children=[createVidColumns(youtubeAPI, rows)])
+def createVideos(youtubeAPI, rows, columns):
+    return html.Div(id="videos", children=[createVidColumns(youtubeAPI, rows, columns)])
 
+# Create columns of videos with given 'rows'
+def createVidColumns(youtubeAPI, rows, columns):
+    vids = []
+    for column in range(columns):
+        group = []
+        for row in range(rows):
+            index = column * rows + row
+            group.append(getVideoAnchor('anchor-' + str(index+1), youtubeAPI.getThumbnail(index)))
+        vids.append(html.Div(className='video-list-column', children=group))
+    return html.Div(children=vids)
 
-# Create two columns of videos with given 'rows'
-def createVidColumns(youtubeAPI, rows):
-    return html.Div(children=[
-         html.Div(className='video-list-column', 
-                  children=[getVideoAnchor('anchor-' + str(i+1), youtubeAPI.getThumbnail(i)) for i in range(rows)]),
-         html.Div(className='video-list-column', 
-                  children=[getVideoAnchor('anchor-' + str(i+1), youtubeAPI.getThumbnail(i)) for i in range(rows, 2 * rows)]),
-    ])
 
 # Create a modal that embeds a video
 def createVideoModal(youtubeAPI):
@@ -59,8 +61,15 @@ def createVideoModal(youtubeAPI):
 # Create a modal that allows the user to modify search query
 def createSearchFilterModel(youtubeAPI):
     modalChildren = [dcc.Checklist(id='search-checklist',
-                                   options=[{'label': 'Puppies', 'value': 'puppies'},
-                                            {'label': 'Kittens', 'value': 'kittens'}],
+                                   options=[{'label': 'Babies', 'value': 'babies'},
+                                            {'label': 'Puppies', 'value': 'puppies'},
+                                            {'label': 'Kittens', 'value': 'kittens'},
+                                            {'label': 'Pandas', 'value': 'baby pandas'},
+                                            {'label': 'Rabbits', 'value': 'baby rabbits'},
+                                            {'label': 'Penguins', 'value': 'baby penguins'},
+                                            {'label': 'Hedgehogs', 'value': 'baby hedgehogs'},
+                                            {'label': 'Sea Otters', 'value': 'baby sea otters'},
+                                            {'label': 'Quokkas', 'value': 'quokkas'}],
                                    value=['puppies']),
                      html.Br(),
                      dbc.Button("Search", id='search-topics-button', n_clicks=0)]
