@@ -9,6 +9,24 @@
 	margin-left: 10px;
 }
 
+/* search icon in the top right corner */
+.search-icon {
+	width: 20%;
+    height: 20%;
+	cursor: pointer;
+	float: right;
+}
+
+.search-icon:hover {
+	width: 22%;
+    height: 22%;
+}
+
+#search-checklist label {
+	margin: 10px;
+	padding: 10px;
+}
+
 /* footer css */
 .footer {
 	background-color: #4D3227;
@@ -40,10 +58,12 @@
    darken the play icon on hover */
 .video-anchor:hover .video-play {
 	opacity: 0.7;
+	cursor: pointer;
 }
 
 .video-anchor:hover .video-thumbnail {
-	border: 2px solid #222222
+	border: 2px solid #222222;
+	cursor: pointer;
 }
 
 /* video thumbnail image */

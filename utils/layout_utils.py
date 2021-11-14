@@ -1,5 +1,13 @@
 import dash_bootstrap_components as dbc
-from dash import Input, Output, State, html
+from dash import Input, Output, State, html, dcc
+
+# Helper function to create a clickable image anchor
+def createSearchButton():
+    return html.Div(children=[
+        html.A(id='search_button', children=[
+            html.Img(className='search-icon', src='/assets/images/search.png'),
+        ])
+    ])
 
 # Create navigation bar
 def createNavBar():
@@ -19,13 +27,7 @@ def createNavBar():
                 href="#",
                 style={"textDecoration": "none"},
             ),
-#            dbc.NavbarToggler(id="navbar-toggler", n_clicks=0),
-#            dbc.Collapse(
-#                search_bar,
-#                id="navbar-collapse",
-#                is_open=False,
-#                navbar=True,
-#            ),
+            createSearchButton(),
         ]
     ),
     color="#4D3227",
@@ -79,3 +81,35 @@ def createVideoModal(youtubeAPI):
             ),
         ],style={'background-color':'rgba(200,200,200,0.1)'}
     )
+
+# Helper function to create a search filter modal
+def createSearchFilterModel(youtubeAPI):
+    return html.Div(
+        children=[
+            dbc.Modal(
+                children=[
+                    dbc.ModalHeader(dbc.ModalTitle("Search topics")),
+                    dbc.ModalBody(
+                        id='filter-body', 
+                        children=[
+                            dcc.Checklist(
+                                id='search-checklist',
+                                options=[
+                                    {'label': 'Puppies', 'value': 'puppies'},
+                                    {'label': 'Kittens', 'value': 'kittens'},
+                                ],
+                                value=['puppies'],
+                            ),
+                            html.Br(),
+                            dbc.Button("Search", id='search-topics-button', n_clicks=0)
+                        ]
+                    ),
+                ],
+                id="search-filter-modal",
+                style={'textAlign':'center', 
+                       'background-color':'rgba(200,200,200,0.1)',
+                       'padding':'10px'}
+            ),
+        ],style={'background-color':'rgba(200,200,200,0.1)'}
+    )
+    

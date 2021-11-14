@@ -10,7 +10,7 @@ from youtube_api import YoutubeAPI
 
 # import util scripts
 from utils.button_utils import getClickedElementID
-from utils.layout_utils import createVidButton, createVideoModal, createVidColumns, createNavBar, createFooter
+from utils.layout_utils import createVidButton, createVideoModal, createSearchFilterModel, createVidColumns, createNavBar, createFooter
 from youtube_api import getVidSearchKeywords
 
 import flask
@@ -32,6 +32,7 @@ app.layout = html.Div([dbc.Container(
         html.Button('kitten', id='kitten-button'),
         html.Div(id='video-list', style={'textAlign':'center'}),
         createVideoModal(youtubeAPI),
+        createSearchFilterModel(youtubeAPI),
         createVidColumns(youtubeAPI, 3),
         createFooter(),
     ]
@@ -69,7 +70,7 @@ app.layout = html.Div([dbc.Container(
      Input("anchor-5", "n_clicks"), Input("anchor-6", "n_clicks")],
     [State("modal-fs", "is_open")],
 )
-def toggle_modal(n1, n2, n3, n4, n5, n6, is_open):
+def toggle_player_modal(n1, n2, n3, n4, n5, n6, is_open):
     # update current video according to the clicked image anchor
     button_id = getClickedElementID()
     newOpenState = is_open
@@ -86,6 +87,17 @@ def toggle_modal(n1, n2, n3, n4, n5, n6, is_open):
                        allow="autoplay"
     )]
     return newOpenState, playerChildren
+
+# Open a modal for search filter
+@app.callback(
+    Output("search-filter-modal", "is_open"),
+    [Input("search_button", "n_clicks")],
+    [State("search-filter-modal", "is_open")],
+)
+def toggle_search_modal(n_clicks, is_open):
+    if n_clicks:
+        return not is_open
+    return is_open
  
 
 if __name__ == "__main__":
