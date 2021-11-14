@@ -10,7 +10,7 @@ from youtube_api import YoutubeAPI
 
 # import util scripts
 from utils.button_utils import getClickedElementID
-from utils.layout_utils import createVidButton, createVideoModal, createVidColumns
+from utils.layout_utils import createVidButton, createVideoModal, createVidColumns, createNavBar, createFooter
 from youtube_api import getVidSearchKeywords
 
 import flask
@@ -25,16 +25,17 @@ youtubeAPI.fake_search()
 app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.title = 'Cute Therapy'
 
-app.layout = dbc.Container(
+app.layout = html.Div([dbc.Container(
     [
-        html.H1(children="Cute Therapy", style= {'textAlign':'center', 'marginTop':40, 'marginBottom': 40}),
+        createNavBar(),
         html.Button('puppy', id='puppy-button'),
         html.Button('kitten', id='kitten-button'),
         html.Div(id='video-list', style={'textAlign':'center'}),
         createVideoModal(youtubeAPI),
-        createVidColumns(youtubeAPI, 3)
+        createVidColumns(youtubeAPI, 3),
+        createFooter(),
     ]
-)
+)])
 
 
 ## Callback upon a category button click

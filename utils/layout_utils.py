@@ -1,6 +1,43 @@
 import dash_bootstrap_components as dbc
 from dash import Input, Output, State, html
 
+# Create navigation bar
+def createNavBar():
+    navbar = dbc.Navbar(
+    dbc.Container(
+        [
+            html.A(
+                # Use row and col to control vertical alignment of logo / brand
+                dbc.Row(
+                    [
+                        dbc.Col(html.Img(src='/assets/images/icon.png', height="30px")),
+                        dbc.Col(dbc.NavbarBrand("Cute Central", className="logo-text")),
+                    ],
+                    align="center",
+                    className="g-0",
+                ),
+                href="#",
+                style={"textDecoration": "none"},
+            ),
+#            dbc.NavbarToggler(id="navbar-toggler", n_clicks=0),
+#            dbc.Collapse(
+#                search_bar,
+#                id="navbar-collapse",
+#                is_open=False,
+#                navbar=True,
+#            ),
+        ]
+    ),
+    color="#4D3227",
+    dark=True,
+    id='navbar',
+    )
+    return navbar
+
+# Create footer section
+def createFooter():
+    return html.Footer([html.Span("Footer section")], className='footer')
+
 # Create two columns of videos with given 'rows'
 def createVidColumns(youtubeAPI, rows):
     return html.Div(children=[
@@ -8,7 +45,7 @@ def createVidColumns(youtubeAPI, rows):
                   children=[createVidButton(i, youtubeAPI.getThumbnail(i)) for i in range(rows)]),
          html.Div(className='video-list-column', 
                   children=[createVidButton(i, youtubeAPI.getThumbnail(i)) for i in range(rows, 2 * rows)]),
-    ], style={'textAlign':'center'})
+    ], style={'textAlign':'center', 'background-color':'#EBC999'})
 
 # Helper function to create a clickable image anchor
 def createVidButton(index, imgUrl):

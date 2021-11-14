@@ -1,3 +1,22 @@
+.logo-text {
+	color: #CD7700
+}
+
+/* Bold navigation bar text*/
+#navbar .navbar-brand {
+	color: #CD7700;
+	font-weight: 900;
+	margin-left: 10px;
+}
+
+/* footer css */
+.footer {
+	background-color: #4D3227;
+	color: #CD7700;
+	font-weight: 500;
+	padding: 10px;
+}
+
 /* The div that contains video-anchor */
 .video-list-item {
 	position: relative;
