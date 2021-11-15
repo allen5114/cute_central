@@ -48,7 +48,8 @@ def createVidColumns(youtubeAPI, rows, columns):
         group = []
         for row in range(rows):
             index = column * rows + row
-            group.append(getVideoAnchor('anchor-' + str(index+1), youtubeAPI.getThumbnail(index)))
+            idDict = {'type': 'video-anchor', 'index': index}
+            group.append(getVideoAnchor(idDict, youtubeAPI.getThumbnail(index)))
         vids.append(html.Div(className='video-list-column', children=group))
     return html.Div(children=vids)
 
