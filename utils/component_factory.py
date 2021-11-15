@@ -29,6 +29,7 @@ def getModal(modal_id, modal_body_id, full_screen, modal_header, modal_children,
                 ],
                 id=modal_id,
                 fullscreen=full_screen,
+                centered=True,
                 style={'textAlign':'center'}
             ),
         ]

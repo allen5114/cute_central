@@ -14,9 +14,9 @@ class YoutubeAPI:
         query = ""
         if len(checkedValues) > 0:
             for value in checkedValues:
-                query = query + " | " + "cute" + value;
+                query = query + " | " + "cute" + value + " compilation";
         else:
-            query = "cute animals"
+            query = "cute animals compilation"
         self.query = query
     
     # set sort order used when querying

@@ -81,7 +81,7 @@ def createSearchFilterModel(youtubeAPI):
                      html.H5("Your weaknesses"),
                      dcc.Dropdown(id='search-checklist',
                                    multi=True,
-                                   options=[{'label': 'Infants', 'value': 'infants'},
+                                   options=[{'label': 'Infants / Toddlers', 'value': 'infants toddlers'},
                                             {'label': 'Puppies', 'value': 'puppies'},
                                             {'label': 'Kittens', 'value': 'kittens'},
                                             {'label': 'Pandas', 'value': 'baby pandas'},
@@ -90,7 +90,7 @@ def createSearchFilterModel(youtubeAPI):
                                             {'label': 'Hedgehogs', 'value': 'baby hedgehogs'},
                                             {'label': 'Sea Otters', 'value': 'baby sea otters'},
                                             {'label': 'Quokkas', 'value': 'quokkas'}],
-                                   value=['infants', 'puppies', 'kittens'])]
+                                   value=['infants toddlers', 'puppies', 'kittens'])]
     modalFooter = dbc.ModalFooter(dbc.Button("Search", id='search-topics-button', n_clicks=0))
     return getModal('search-filter-modal', 'filter-body', False, modalHeader, modalChildren, modalFooter)
     
