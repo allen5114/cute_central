@@ -15,16 +15,17 @@ def getVideoAnchor(nodeId, imgUrl):
     ])
 
 # Create a modal
-def getModal(modal_id, modal_body_id, full_screen, modal_children):
+def getModal(modal_id, modal_body_id, full_screen, modal_header, modal_children, modal_footer):
     return html.Div(
         children=[
             dbc.Modal(
                 children=[
-                    dbc.ModalHeader(dbc.ModalTitle("")),
+                    modal_header,
                     dbc.ModalBody(
                         id=modal_body_id, 
                         children=modal_children
                     ),
+                    modal_footer
                 ],
                 id=modal_id,
                 fullscreen=full_screen,

@@ -7,6 +7,7 @@ class YoutubeAPI:
         self.youtubeAPI = build('youtube', 'v3', developerKey = api_key)
         self.currentIndex = 0
         self.query = "cute animals"
+        self.order = 'relevance'
 
     # check values are the values of the toggled on animal checkboxes
     def setQuery(self, checkedValues):
@@ -16,11 +17,15 @@ class YoutubeAPI:
                 query = query + " | " + "cute" + value;
         else:
             query = "cute animals"
-        self.query = query;
+        self.query = query
+    
+    # set sort order used when querying
+    def setOrder(self, order):
+        self.order = order
         
     # query for videos
     def search(self, resultsPerPage):
-        request = self.youtubeAPI.search().list(q=self.query, part='snippet', type='video', videoEmbeddable='true', maxResults=resultsPerPage)
+        request = self.youtubeAPI.search().list(q=self.query, order=self.order, part='snippet', type='video', videoEmbeddable='true', maxResults=resultsPerPage)
         response = request.execute()
         self.videoIds = []
         for item in response['items']:

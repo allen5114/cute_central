@@ -35,7 +35,7 @@ def createNavBar():
 
 # Create footer section
 def createFooter():
-    return html.Footer([html.Span("Footer section")], className='footer')
+    return html.Footer([html.Span("Footer section")], className='footer', id='footer')
 
 # Create list of videos
 def createVideos(youtubeAPI, rows, columns):
@@ -53,16 +53,35 @@ def createVidColumns(youtubeAPI, rows, columns):
         vids.append(html.Div(className='video-list-column', children=group))
     return html.Div(children=vids)
 
+# Sortby options
+def getSortOptions():
+    return html.Div([dcc.Dropdown(
+        options=[{'label': 'Relevance', 'value': 'relevance'},
+                 {'label': 'Rating', 'value': 'rating'},
+                 {'label': 'View Count', 'value': 'viewCount'},
+                 {'label': 'Upload Date', 'value': 'date'}],
+        value='relevance',
+        id="sortby-options"
+    )], style={'textAlign':'center'})
+
 
 # Create a modal that embeds a video
 def createVideoModal(youtubeAPI):
+    modalHeader = dbc.ModalHeader("")
     modalChildren = [html.Iframe(src=youtubeAPI.getCurrentUrl(), width="90%", height="90%", allow="autoplay")]
-    return getModal('modal-fs', 'player', True, modalChildren)
+    return getModal('modal-fs', 'player', True, modalHeader, modalChildren, None)
 
 # Create a modal that allows the user to modify search query
 def createSearchFilterModel(youtubeAPI):
-    modalChildren = [dcc.Checklist(id='search-checklist',
-                                   options=[{'label': 'Babies', 'value': 'babies'},
+    modalHeader = dbc.ModalHeader("")
+    modalChildren = [html.H5("Search Options"),
+                     getSortOptions(),
+                     html.Br(),
+                     html.Hr(),
+                     html.H5("Your weaknesses"),
+                     dcc.Dropdown(id='search-checklist',
+                                   multi=True,
+                                   options=[{'label': 'Infants', 'value': 'infants'},
                                             {'label': 'Puppies', 'value': 'puppies'},
                                             {'label': 'Kittens', 'value': 'kittens'},
                                             {'label': 'Pandas', 'value': 'baby pandas'},
@@ -71,8 +90,7 @@ def createSearchFilterModel(youtubeAPI):
                                             {'label': 'Hedgehogs', 'value': 'baby hedgehogs'},
                                             {'label': 'Sea Otters', 'value': 'baby sea otters'},
                                             {'label': 'Quokkas', 'value': 'quokkas'}],
-                                   value=['puppies']),
-                     html.Br(),
-                     dbc.Button("Search", id='search-topics-button', n_clicks=0)]
-    return getModal('search-filter-modal', 'filter-body', False, modalChildren)
+                                   value=['infants', 'puppies', 'kittens'])]
+    modalFooter = dbc.ModalFooter(dbc.Button("Search", id='search-topics-button', n_clicks=0))
+    return getModal('search-filter-modal', 'filter-body', False, modalHeader, modalChildren, modalFooter)
     

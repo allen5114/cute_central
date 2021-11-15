@@ -67,14 +67,15 @@ def toggle_player_modal(n_clicksAll):
 # Search and update the list of videos
 @app.callback (
     Output("videos", "children"),
-    [Input("search-topics-button", "n_clicks"),
-     Input("search-checklist", "value")],
+    Input("search-topics-button", "n_clicks"),
+    [State("search-checklist", "value"),
+     State("sortby-options", "value")],
     prevent_initial_call=True
 )
-def search_and_update_videos(n_clicks, checkedValues):
-    button_id = getClickedElementID()
-    if button_id == "search-topics-button":
-        youtubeAPI.setQuery(checkedValues)
+def search_and_update_videos(n_clicks, pickedAnimals, sortByValue):
+    if n_clicks != None:
+        youtubeAPI.setQuery(pickedAnimals)
+        youtubeAPI.setOrder(sortByValue)
         youtubeAPI.search(rows * columns)
         return createVidColumns(youtubeAPI, rows, columns)
     raise PreventUpdate
