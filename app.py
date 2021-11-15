@@ -26,7 +26,7 @@ columns = int(config['GridDimension']['columns'])
 youtubeAPI = YoutubeAPI(config["Youtube"]["api_key"])
 youtubeAPI.fake_search(rows * columns)
 
-app = dash.Dash(external_stylesheets=[dbc.themes.BOOTSTRAP])
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP], update_title=None)
 app.title = 'Cute Central'
 
 app.layout = html.Div([dbc.Container(
@@ -103,6 +103,7 @@ def toggle_player_modal(n1, n2, n3, n4, n5, n6, n7, n8, n9, n10, n11, n12, is_op
      Input("search-topics-button", "n_clicks"),
      Input("search-checklist", "value")],
     [State("search-filter-modal", "is_open")],
+    prevent_initial_call=True
 )
 def toggle_search_modal(n_clicks, n_clicks2, checkedValues, is_open):
     button_id = getClickedElementID()
