@@ -23,7 +23,8 @@ def getModal(modal_id, modal_body_id, full_screen, modal_header, modal_children,
                     modal_header,
                     dbc.ModalBody(
                         id=modal_body_id, 
-                        children=modal_children
+                        children=modal_children,
+                        style={'paddingLeft':'20', 'paddingRight':'20', 'textAlign':'center'}
                     ),
                     modal_footer
                 ],

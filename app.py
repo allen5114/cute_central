@@ -14,7 +14,6 @@ from utils.button_utils import getClickedElementID
 from utils.layout_utils import createVideoModal, createSearchFilterModel, createVideos, createVidColumns, createNavBar, createFooter
 from youtube_api import getVidSearchKeywords
 
-#import flask
 import json
 
 import argparse
@@ -30,11 +29,11 @@ columns = int(config['GridDimension']['columns'])
 youtubeAPI = YoutubeAPI(config["Youtube"]["api_key"])
 youtubeAPI.fake_search(rows * columns)
 
-externalScripts= ['https://www.youtube.com/iframe_api']
+#externalScripts= ['https://www.youtube.com/iframe_api']
 
 app = dash.Dash(__name__, 
                 external_stylesheets=[dbc.themes.BOOTSTRAP], 
-                external_scripts=externalScripts,
+#                external_scripts=externalScripts,
                 update_title=None,
                 meta_tags=[{'name': 'viewport',
                            'content': 'width=device-width, initial-scale=1.0, maximum-scale=1.2, minimum-scale=0.5'}])
@@ -51,6 +50,27 @@ app.layout = html.Div(
         createFooter(),
     ]
 )
+
+# Open terms of use
+@app.callback (
+    Output("terms-modal", "is_open"),
+    Input("terms_of_use_button", "n_clicks")
+)
+def open_terms_of_use(n_clicks):
+    if n_clicks:
+        return True
+    return False
+
+#Open Privacy Policy
+@app.callback (
+    Output("privacy-policy-modal", "is_open"),
+    Input("privacy-policy-button", "n_clicks")
+)
+def open_privacy_policy(n_clicks):
+    if n_clicks:
+        return True
+    return False
+
 
 # Open a modal and auto play video on image anchor click
 @app.callback(

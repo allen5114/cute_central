@@ -34,6 +34,11 @@
 	padding: 10px;
 }
 
+.footer-link {
+	color: #CD7700;
+	cursor: pointer;
+}
+
 #videos {
 	padding-top:15px;
 	text-align: center;
