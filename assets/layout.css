@@ -36,13 +36,6 @@
 	background-color: #EBC999;
 }
 
-#videos-spinner {
-	text-align: center;
-	color: #EBC999;
-	height: 30rem;
-	width: 30rem;
-}
-
 /* The div that contains video-anchor */
 .video-list-item {
 	position: relative;

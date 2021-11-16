@@ -14,8 +14,10 @@ from utils.button_utils import getClickedElementID
 from utils.layout_utils import createVideoModal, createSearchFilterModel, createVideos, createVidColumns, createNavBar, createFooter
 from youtube_api import getVidSearchKeywords
 
-import flask
+#import flask
 import json
+
+import argparse
 
 # Read configurations
 config = configparser.ConfigParser()
@@ -28,7 +30,9 @@ columns = int(config['GridDimension']['columns'])
 youtubeAPI = YoutubeAPI(config["Youtube"]["api_key"])
 youtubeAPI.fake_search(rows * columns)
 
-app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP], update_title=None)
+app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP], update_title=None,
+                meta_tags=[{'name': 'viewport',
+                           'content': 'width=device-width, initial-scale=1.0, maximum-scale=1.2, minimum-scale=0.5'}])
 app.title = 'Cute Central'
 
 app.layout = html.Div([dbc.Container(
@@ -96,4 +100,10 @@ def toggle_search_modal(n_clicks, n_clicks2):
    raise PreventUpdate
 
 if __name__ == "__main__":
-    app.run_server(debug=True, port=8000)
+    parser = argparse.ArgumentParser()
+    parser.add_argument("runMode", help="Use 0 for Development and 1 for Production")
+    args = parser.parse_args()
+    if args.runMode == "0":
+        app.run_server(debug=True, port=8000)
+    elif args.runMode == "1":
+        app.run_server(debug=False, port=80, host='0.0.0.0')
