@@ -30,7 +30,12 @@ columns = int(config['GridDimension']['columns'])
 youtubeAPI = YoutubeAPI(config["Youtube"]["api_key"])
 youtubeAPI.fake_search(rows * columns)
 
-app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP], update_title=None,
+externalScripts= ['https://www.youtube.com/iframe_api']
+
+app = dash.Dash(__name__, 
+                external_stylesheets=[dbc.themes.BOOTSTRAP], 
+                external_scripts=externalScripts,
+                update_title=None,
                 meta_tags=[{'name': 'viewport',
                            'content': 'width=device-width, initial-scale=1.0, maximum-scale=1.2, minimum-scale=0.5'}])
 app.title = 'Cute Central'
@@ -38,6 +43,8 @@ app.title = 'Cute Central'
 app.layout = html.Div(
     [
         createNavBar(),
+#        html.Button(id='test', children=["test"]),
+#        html.Div(id="iframe-player2"),
         createVideoModal(youtubeAPI),
         createSearchFilterModel(youtubeAPI),
         createVideos(youtubeAPI, int(config['GridDimension']['rows']), int(config['GridDimension']['columns'])),
