@@ -2,6 +2,10 @@
 	color: #CD7700
 }
 
+#navbar {
+	color: #4D3227;
+}
+
 /* Bold navigation bar text*/
 #navbar .navbar-brand {
 	color: #CD7700;
@@ -92,4 +96,16 @@
 	color: #CD7700;
 	font-weight: 900;
 	visibility: visible;
+}
+
+body {
+	margin: 0;
+}
+
+iframe {
+    display: block;       /* iframes are inline by default */
+    background: #000;
+    border: none;         /* Reset default border */
+    height: 90vh;        /* Viewport-relative units */
+    width: 90vw;
 }

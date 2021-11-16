@@ -68,7 +68,7 @@ def getSortOptions():
 # Create a modal that embeds a video
 def createVideoModal(youtubeAPI):
     modalHeader = dbc.ModalHeader("")
-    modalChildren = [html.Iframe(src=youtubeAPI.getCurrentUrl(), width="90%", height="90%", allow="autoplay")]
+    modalChildren = [html.Iframe(id="iframe-player", src=youtubeAPI.getCurrentUrl(), allow="autoplay; fullscreen;")]
     return getModal('modal-fs', 'player', True, modalHeader, modalChildren, None)
 
 # Create a modal that allows the user to modify search query

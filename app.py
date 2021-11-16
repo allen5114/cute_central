@@ -35,7 +35,7 @@ app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP], update_ti
                            'content': 'width=device-width, initial-scale=1.0, maximum-scale=1.2, minimum-scale=0.5'}])
 app.title = 'Cute Central'
 
-app.layout = html.Div([dbc.Container(
+app.layout = html.Div(
     [
         createNavBar(),
         createVideoModal(youtubeAPI),
@@ -43,11 +43,11 @@ app.layout = html.Div([dbc.Container(
         createVideos(youtubeAPI, int(config['GridDimension']['rows']), int(config['GridDimension']['columns'])),
         createFooter(),
     ]
-)])
+)
 
 # Open a modal and auto play video on image anchor click
 @app.callback(
-    [Output("modal-fs", "is_open"), Output("player", "children")],
+    [Output("modal-fs", "is_open"), Output("iframe-player", "src")],
     [Input({'type': 'video-anchor', 'index': ALL}, 'n_clicks')],
     prevent_initial_call=True,
 )
@@ -62,10 +62,7 @@ def toggle_player_modal(n_clicksAll):
     if typeClicked:
         button_idDict = json.loads(getClickedElementID())  
         youtubeAPI.setCurrentVid(button_idDict["index"])
-        playerChildren = [html.Iframe(src=youtubeAPI.getCurrentUrl(),
-                           width="90%", height="90%", allow="autoplay"
-        )]
-        return True, playerChildren
+        return True, youtubeAPI.getCurrentUrl()
     raise PreventUpdate
 
 # Search and update the list of videos

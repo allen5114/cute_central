@@ -51,7 +51,7 @@ class YoutubeAPI:
         self.thumbnails = []
         
         for videoId in self.videoIds:
-            url = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1'
+            url = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&playsinline=0"'
             thumbnail = 'https://i.ytimg.com/vi/' + videoId + '/mqdefault.jpg'
             self.urls.append(url)
             self.thumbnails.append(thumbnail)
