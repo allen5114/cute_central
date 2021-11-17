@@ -41,10 +41,12 @@ app = dash.Dash(__name__,
 #                external_scripts=externalScripts,
                 update_title=None,
                 meta_tags=[{'name': 'viewport', 'content': 'width=device-width, initial-scale=1.0, maximum-scale=1.2, minimum-scale=0.5'},
+                           {'name':'description', 'content':'Enjoy the cutest babies, puppies, kittens, and other animal videos in one place on Cute-Central.'},
                            {'property':'og:image', 'content':'http://www.cute-central.com/assets/images/icon.png'},
-                           {'name':'description', 'content':'Enjoy the cutest animal videos on Cute-Central.'},
-                           {'name':'keywords', 'content':'video, cute, animal, free'}])
-app.title = 'Cute Central'
+                           {'property':'og:description', 'content':'Enjoy the cutest animal videos on Cute-Central.'},
+                           {'property':'og:title', "content":"Cute-Central: Cutest Animal Videos"},
+                           {'name':'keywords', 'content':'video, cute, animal, animals, free, cutest'}])
+app.title = 'Cute-Central | Enjoy the cutest videos'
 server = app.server
 
 app.index_string = '''
