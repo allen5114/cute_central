@@ -46,7 +46,7 @@ app = dash.Dash(__name__,
                            {'property':'og:description', 'content':'Enjoy the cutest animal videos on Cute-Central.'},
                            {'property':'og:title', "content":"Cute-Central: Cutest Animal Videos"},
                            {'name':'keywords', 'content':'video, cute, animal, animals, free, cutest'}])
-app.title = 'Cute-Central | Enjoy the cutest videos'
+app.title = 'Cute-Central: Cutest Animal Videos'
 server = app.server
 
 app.index_string = '''
