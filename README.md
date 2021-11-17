@@ -21,12 +21,15 @@ python -m pip install --upgrade pip
 
 ## Install required libraries
 ````
-# Dash framework
-python -m pip install dash==1.13.3
+# Install Dash, Dash bootsrap components, Google APIs Client Library for Python, gunicorn, etc
+python -m pip install -r requirements.txt
+````
 
-# Dash bootstrap components
-python -m pip install dash-bootstrap-components
+## Run modes
+````
+// run in dev mode
+python app.py 0
 
-# Google APIs Client Library for Python
-python -m pip install google-api-python-client
+// serve app via waitress in production mode
+python app.py 1
 ````

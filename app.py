@@ -39,6 +39,8 @@ app = dash.Dash(__name__,
                            'content': 'width=device-width, initial-scale=1.0, maximum-scale=1.2, minimum-scale=0.5'}])
 app.title = 'Cute Central'
 
+server = app.server
+
 app.layout = html.Div(
     [
         createNavBar(),
@@ -130,4 +132,8 @@ if __name__ == "__main__":
     if args.runMode == "0":
         app.run_server(debug=True, port=8000)
     elif args.runMode == "1":
-        app.run_server(debug=False, port=80, host='0.0.0.0')
+        import waitress
+        import logging
+        logger = logging.getLogger('waitress')
+        logger.setLevel(logging.INFO)
+        waitress.serve(server, host='0.0.0.0', port=80)
