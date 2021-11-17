@@ -90,6 +90,7 @@ def getSortOptions():
                  {'label': 'View Count', 'value': 'viewCount'},
                  {'label': 'Upload Date', 'value': 'date'}],
         value='relevance',
+        persistence=True,
         id="sortby-options"
     )], style={'textAlign':'center'})
 
@@ -114,6 +115,7 @@ def createSearchFilterModel(youtubeAPI):
                      html.H5("Your weaknesses"),
                      dcc.Dropdown(id='search-checklist',
                                    multi=True,
+                                   persistence=True,
                                    options=[{'label': 'Infants / Toddlers', 'value': 'infants toddlers'},
                                             {'label': 'Puppies', 'value': 'puppies'},
                                             {'label': 'Kittens', 'value': 'kittens'},

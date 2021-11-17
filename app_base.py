@@ -151,16 +151,3 @@ def toggle_search_modal(n_clicks, n_clicks2):
    elif button_id == "search-topics-button":
        return False
    raise PreventUpdate
-
-if __name__ == "__main__":
-    parser = argparse.ArgumentParser()
-    parser.add_argument("runMode", help="Use 0 for Development and 1 for Production")
-    args = parser.parse_args()
-    if args.runMode == "0":
-        app.run_server(debug=True, port=8000)
-    elif args.runMode == "1":
-        import waitress
-        import logging
-        logger = logging.getLogger('waitress')
-        logger.setLevel(logging.INFO)
-        waitress.serve(server, host='0.0.0.0', port=80)
