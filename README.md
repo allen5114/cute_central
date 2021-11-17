@@ -28,8 +28,8 @@ python -m pip install -r requirements.txt
 ## Run modes
 ````
 // run in dev mode
-python app.py 0
+python app_dev.py
 
 // serve app via waitress in production mode
-python app.py 1
+python app_prod.py
 ````
