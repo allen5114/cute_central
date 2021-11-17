@@ -8,6 +8,8 @@ class YoutubeAPI:
         self.currentIndex = 0
         self.query = "cute animals"
         self.order = 'relevance'
+        self.urls = []
+        self.thumbnails = []
 
     # check values are the values of the toggled on animal checkboxes
     def setQuery(self, checkedValues):
@@ -63,11 +65,15 @@ class YoutubeAPI:
         
     # Get thumbnail's URL
     def getThumbnail(self, index):
-        return self.thumbnails[index]
+        if len(self.thumbnails) > index:
+            return self.thumbnails[index]
+        return None;
     
     # Get embeded video's url
     def getCurrentUrl(self):
-        return self.urls[self.currentIndex]
+        if len(self.urls) > self.currentIndex:
+            return self.urls[self.currentIndex]
+        return None;
         
         
         

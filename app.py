@@ -27,7 +27,12 @@ rows = int(config['GridDimension']['rows'])
 columns = int(config['GridDimension']['columns'])
 
 youtubeAPI = YoutubeAPI(config["Youtube"]["api_key"])
+#Use fake search when reaching API limit for the day..
 youtubeAPI.fake_search(rows * columns)
+
+# Initial search to populate the list of videos
+#youtubeAPI.setQuery(['puppies'])
+#youtubeAPI.search(rows * columns)
 
 #externalScripts= ['https://www.youtube.com/iframe_api']
 
@@ -38,8 +43,28 @@ app = dash.Dash(__name__,
                 meta_tags=[{'name': 'viewport',
                            'content': 'width=device-width, initial-scale=1.0, maximum-scale=1.2, minimum-scale=0.5'}])
 app.title = 'Cute Central'
-
 server = app.server
+
+app.index_string = '''
+<!DOCTYPE html>
+<html>
+    <head>
+        {%metas%}
+        <title>{%title%}</title>
+        {%favicon%}
+        {%css%}
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7896505577932847" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        {%app_entry%}
+        <footer>
+            {%config%}
+            {%scripts%}
+            {%renderer%}
+        </footer>
+    </body>
+</html>
+'''
 
 app.layout = html.Div(
     [
