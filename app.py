@@ -28,11 +28,11 @@ columns = int(config['GridDimension']['columns'])
 
 youtubeAPI = YoutubeAPI(config["Youtube"]["api_key"])
 #Use fake search when reaching API limit for the day..
-youtubeAPI.fake_search(rows * columns)
+#youtubeAPI.fake_search(rows * columns)
 
 # Initial search to populate the list of videos
-#youtubeAPI.setQuery(['puppies'])
-#youtubeAPI.search(rows * columns)
+youtubeAPI.setQuery(['puppies'])
+youtubeAPI.search(rows * columns)
 
 #externalScripts= ['https://www.youtube.com/iframe_api']
 
