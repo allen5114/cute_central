@@ -39,7 +39,7 @@ def createTermsOfUse():
                      html.Span("Your access to and use of the Service is conditioned on your acceptance of and compliance with these terms. These Terms apply to all visitors, users, and others who access or use the Service."),
                      html.Br(), html.Br(),
                      html.H5("Youtube's Terms of Service"),
-                     html.Span("This site uses Youtube API Clients to provide the content. By using this site, you are agreeing to be bound by the "),
+                     html.Span("Youtube API Clients is used to provide the content. By using this site, you are agreeing to be bound by the "),
                      html.A("Youtube Terms of service",
                             href="https://www.youtube.com/t/terms", 
                             target="_blank")]
@@ -48,10 +48,12 @@ def createTermsOfUse():
 def createPrivacyPolicy():
     modalHeader = dbc.ModalHeader("")
     modalChildren = [html.H3("Privacy Policy"),
-                     html.Span("We use Youtube API to provide content. Youtube API is provided in accordance with "),
-                     html.A("Google Privacy Policy",
-                            href="http://www.google.com/policies/privacy", 
-                            target="_blank")]
+                     html.Span("Youtube API is used to provide content and it's provided in accordance with "),
+                     html.A("Google Privacy Policy", href="http://www.google.com/policies/privacy", target="_blank"),
+                     html.Br(), html.Br(),
+                     html.Span("Google and or third-party service providers are used for advertisements, promotions, and offers. Third-party vendors, including Google, use cookies to serve ads based on user’s prior visits on this site. Google’s use of advertising cookies enables it and its partner to serve ads to you based on your visits to our site. You may opt-out of personalized advertisement through browser setting or visiting "),
+                     html.A("Ads Settings", href="https://www.google.com/settings/ads", target="_blank"),
+                     ]
     return getModal('privacy-policy-modal', 'privacy-policy-body', False, modalHeader, modalChildren, None)
 
 # Create footer section
@@ -60,7 +62,9 @@ def createFooter():
                                  createPrivacyPolicy(),
                                  html.A("Terms of Use", className="footer-link", id="terms_of_use_button"),
                                  html.Br(),
-                                 html.A("Privacy Policy", className="footer-link", id="privacy-policy-button")],
+                                 html.A("Privacy Policy", className="footer-link", id="privacy-policy-button"),
+                                 html.Br(),
+                                 html.A("Contact Developer", className="footer-link", href="mailto:chuan.l.hung@gmail.com")],
                         className='footer', id='footer')
 
 # Create list of videos
