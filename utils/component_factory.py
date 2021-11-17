@@ -7,7 +7,7 @@ def getImageAnchor(node_id, css_class_name, src_url):
 
 # Create a clickable/anchored video
 def getVideoAnchor(nodeId, imgUrl):
-    return html.Div(className='video-list-item', children=[
+    return html.Div(className='video-container-inner', children=[
         html.A(className='video-anchor', id=nodeId, children=[
             html.Img(className='video-thumbnail', src=imgUrl),
             html.Img(className="video-play", src='/assets/images/play.png')

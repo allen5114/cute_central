@@ -17,7 +17,7 @@ def createNavBar():
                     dbc.Row(
                         [
                             dbc.Col(html.Img(src='/assets/images/icon.png', height="30px"),),
-                            dbc.Col(dbc.NavbarBrand("Cute Central", className="logo-text")),
+                            dbc.Col(dbc.NavbarBrand("Cute Central")),
                         ],
                         align="center",
                         className="g-0",
@@ -28,8 +28,7 @@ def createNavBar():
             ],
         ),
         color="#4D3227",
-        id='navbar',
-
+        className="navbar",
     )
 
 def createTermsOfUse():
@@ -68,7 +67,7 @@ def createFooter():
 
 # Create list of videos
 def createVideos(youtubeAPI, rows, columns):
-    return html.Div(id="videos", children=[createVidColumns(youtubeAPI, rows, columns)])
+    return html.Div(id="videos", className="videos", children=[createVidColumns(youtubeAPI, rows, columns)])
 
 # Create columns of videos with given 'rows'
 def createVidColumns(youtubeAPI, rows, columns):
@@ -79,7 +78,7 @@ def createVidColumns(youtubeAPI, rows, columns):
             index = column * rows + row
             idDict = {'type': 'video-anchor', 'index': index}
             group.append(getVideoAnchor(idDict, youtubeAPI.getThumbnail(index)))
-        vids.append(html.Div(className='video-list-column', children=group))
+        vids.append(html.Div(className='video-container-outer', children=group))
     return html.Div(children=vids)
 
 # Sortby options

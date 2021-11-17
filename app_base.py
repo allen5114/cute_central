@@ -44,8 +44,8 @@ app = dash.Dash(__name__,
                            {'name':'description', 'content':'Enjoy the cutest babies, puppies, kittens, and other animal videos in one place on Cute-Central.'},
                            {'property':'og:image', 'content':'http://www.cute-central.com/assets/images/icon.png'},
                            {'property':'og:description', 'content':'Enjoy the cutest animal videos on Cute-Central.'},
-                           {'property':'og:title', "content":"Cute-Central: Cutest Animal Videos"},
-                           {'name':'keywords', 'content':'video, cute, animal, animals, free, cutest'}])
+                           {'property':'og:title', "content":"Cute Central: Cutest Animal Videos"},
+                           {'name':'keywords', 'content':'video, animal, animals, free, cute, cutest'}])
 app.title = 'Cute-Central: Cutest Animal Videos'
 server = app.server
 

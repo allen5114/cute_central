@@ -1,5 +1,93 @@
-/** Replace default loading text **/
+/* navigation bar text*/
+.navbar .navbar-brand {
+	color: #CD7700;
+	font-weight: 900;
+	margin-left: 10px;
+}
 
+/* search icon in the top right corner */
+.search-icon {
+	width: 20%;
+    height: 20%;
+	cursor: pointer;
+	float: right;
+}
+.search-icon:hover {
+	width: 22%;
+    height: 22%;
+}
+
+/* footer section*/
+.footer {
+	background-color: #4D3227;
+	color: #CD7700;
+	font-weight: 500;
+	padding: 10px;
+}
+.footer-link {
+	color: #CD7700;
+	cursor: pointer;
+}
+
+/* videos section */
+.videos {
+	padding-top:15px;
+	text-align: center;
+	background-color: #EBC999;
+}
+.video-container-inner {
+	position: relative;
+	margin-left: 5px;
+	margin-right: 5px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.video-container-outer {
+	display: inline-block;
+}
+
+/* The anchor that contains the video thumbnail and play icon */
+.video-anchor {
+	margin:2px;
+}
+
+/* The anchor that contains the video thumbnail and play icon
+   darken the play icon on hover */
+.video-anchor:hover .video-play {
+	opacity: 0.7;
+	cursor: pointer;
+}
+
+.video-anchor:hover .video-thumbnail {
+	border: 2px solid #222222;
+	cursor: pointer;
+}
+
+/* video thumbnail image */
+.video-thumbnail {
+	border-radius: 25px;
+	border: 2px solid #999999
+}
+
+/* video play icon */
+.video-play {
+    left: 100px;
+    top: 30px;
+    position: absolute;
+    opacity: 0.3;
+    z-index: 1;
+}
+
+/* iframe with Youtube Video embeded */
+iframe {
+    display: block;       /* iframes are inline by default */
+    background: #000;
+    border: none;         /* Reset default border */
+    width: 95vw;
+    height: calc(95vw/1.77777778);
+}
+
+/** Replace default loading text from Dash **/
 ._dash-loading {
   margin: auto;
   color: transparent;
@@ -21,4 +109,16 @@
   -webkit-animation: spinner-border 0.75s linear infinite;
   animation: spinner-border 0.75s linear infinite;
   margin-top: 2rem;
+}
+
+/* https://dash.plotly.com/loading-states */
+*[data-dash-is-loading="true"]{
+    visibility: visible;
+}
+
+*[data-dash-is-loading="true"]::before{
+    content: "collecting cuteness...";
+	color: #CD7700;
+	font-weight: 900;
+	visibility: visible;
 }
