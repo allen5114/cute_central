@@ -11,26 +11,25 @@ def createSearchButton():
 def createNavBar():
     return dbc.Navbar(
         dbc.Container(
-            [
+            children=[
                 html.A(
                     # Use row and col to control vertical alignment of logo / brand
                     dbc.Row(
                         [
-                            dbc.Col(html.Img(src='/assets/images/icon.png', height="30px")),
+                            dbc.Col(html.Img(src='/assets/images/icon.png', height="30px"),),
                             dbc.Col(dbc.NavbarBrand("Cute Central", className="logo-text")),
                         ],
                         align="center",
                         className="g-0",
                     ),
-                    href="#",
                     style={"textDecoration": "none"},
                 ),
                 createSearchButton(),
-            ]
+            ],
         ),
         color="#4D3227",
-        dark=True,
         id='navbar',
+
     )
 
 def createTermsOfUse():
