@@ -121,6 +121,7 @@ def createSearchFilterModel(youtubeAPI):
                                    options=[{'label': 'Infants / Toddlers', 'value': 'infants toddlers'},
                                             {'label': 'Puppies', 'value': 'puppies'},
                                             {'label': 'Kittens', 'value': 'kittens'},
+                                            {'label': 'Hamsters', 'value': 'hamsters'},
                                             {'label': 'Pandas', 'value': 'baby pandas'},
                                             {'label': 'Rabbits', 'value': 'baby rabbits'},
                                             {'label': 'Penguins', 'value': 'baby penguins'},
