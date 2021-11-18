@@ -34,6 +34,7 @@
 	padding-top:15px;
 	text-align: center;
 	background-color: #EBC999;
+	min-height: 80vh;
 }
 .video-container-inner {
 	position: relative;

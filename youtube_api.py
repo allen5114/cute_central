@@ -28,11 +28,15 @@ class YoutubeAPI:
     # query for videos
     def search(self, resultsPerPage):
         request = self.youtubeAPI.search().list(q=self.query, order=self.order, part='snippet', type='video', videoEmbeddable='true', maxResults=resultsPerPage)
-        response = request.execute()
-        self.videoIds = []
-        for item in response['items']:
-            self.videoIds.append(item['id']['videoId'])
-        self.populateList()
+        try:
+            response = request.execute()
+            self.videoIds = []
+            for item in response['items']:
+                self.videoIds.append(item['id']['videoId'])
+            self.populateList()
+        except:
+            self.videoIds = []
+            print("Failed to query the videos. Please check the Youtube API key");
         
     # Use fake search data to get around API call limit
     def fake_search(self, resultsPerPage):
@@ -74,6 +78,10 @@ class YoutubeAPI:
         if len(self.urls) > self.currentIndex:
             return self.urls[self.currentIndex]
         return None;
+    
+    # Get number of results
+    def getResultCount(self):
+        return len(self.videoIds)
         
         
         

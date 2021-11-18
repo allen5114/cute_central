@@ -67,7 +67,10 @@ def createFooter():
 
 # Create list of videos
 def createVideos(youtubeAPI, rows, columns):
-    return html.Div(id="videos", className="videos", children=[createVidColumns(youtubeAPI, rows, columns)])
+    if youtubeAPI.getResultCount() > 0:
+        return html.Div(id="videos", className="videos", children=[createVidColumns(youtubeAPI, rows, columns)])
+    else:
+        return html.Div(id="videos", className="videos", children=[])
 
 # Create columns of videos with given 'rows'
 def createVidColumns(youtubeAPI, rows, columns):
