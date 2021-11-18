@@ -81,6 +81,7 @@ app.index_string = '''
 
 app.layout = html.Div(
     [
+        dcc.Location(id='url', refresh=False),
         createNavBar(),
 #        html.Button(id='test', children=["test"]),
 #        html.Div(id="iframe-player2"),
@@ -94,23 +95,24 @@ app.layout = html.Div(
 # Open terms of use
 @app.callback (
     Output("terms-modal", "is_open"),
-    Input("terms_of_use_button", "n_clicks")
+   [Input("terms_of_use_button", "n_clicks"),
+    Input("url", "pathname")]
 )
-def open_terms_of_use(n_clicks):
-    if n_clicks:
+def open_terms_of_use(n_clicks, pathname):
+    if n_clicks or pathname == "/terms":
         return True
     return False
 
 #Open Privacy Policy
 @app.callback (
     Output("privacy-policy-modal", "is_open"),
-    Input("privacy-policy-button", "n_clicks")
+   [Input("privacy-policy-button", "n_clicks"),
+    Input("url", "pathname")]
 )
-def open_privacy_policy(n_clicks):
-    if n_clicks:
+def open_privacy_policy(n_clicks, pathname):
+    if n_clicks or pathname == "/privacy":
         return True
     return False
-
 
 # Open a modal and auto play video on image anchor click
 @app.callback(
