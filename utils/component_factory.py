@@ -9,8 +9,8 @@ def getImageAnchor(node_id, css_class_name, src_url):
 def getVideoAnchor(nodeId, imgUrl):
     return html.Div(className='video-container-inner', children=[
         html.A(className='video-anchor', id=nodeId, children=[
-            html.Img(className='video-thumbnail', src=imgUrl),
-            html.Img(className="video-play", src='/assets/images/play.png')
+            html.Img(className="video-play", src='/assets/images/play.png'),
+            html.Img(className='video-thumbnail', src=imgUrl)
         ])
     ])
 
