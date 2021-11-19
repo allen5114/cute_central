@@ -49,9 +49,10 @@ def createPrivacyPolicy():
                      html.Span("Youtube API is used to provide content and it's provided in accordance with "),
                      html.A("Google Privacy Policy", href="http://www.google.com/policies/privacy", target="_blank"),
                      html.Br(), html.Br(),
-                     html.Span("Google Analytics is used for the developer to better understand the site traffic. You may opt-out by visiting "),
-                     html.A("Google Analytics opt-out browser add-on", href="http://tools.google.com/dlpage/gaoptout?hl=None", target="_blank")
+                     #html.Span("Google Analytics is used for the developer to better understand the site traffic. You may opt-out by visiting "),
+                     #html.A("Google Analytics opt-out browser add-on", href="http://tools.google.com/dlpage/gaoptout?hl=None", target="_blank")
                      #html.Span("Google and or third-party service providers are used for advertisements, promotions, and offers. Third-party vendors, including Google, use cookies to serve ads based on user’s prior visits on this site. Google’s use of advertising cookies enables it and its partner to serve ads to you based on your visits to our site. You may opt-out of personalized advertisement through browser setting or visiting "),
+                     html.Span("Google Analytics and RevenueHits are used to better understand the site traffic and advertisement. You can choose to turn off all cookies in your browser settings."),
                      #html.A("Ads Settings", href="https://www.google.com/settings/ads", target="_blank"),
                      ]
     return getModal('privacy-policy-modal', 'privacy-policy-body', False, modalHeader, modalChildren, None)
@@ -64,7 +65,8 @@ def createFooter():
                                  html.Br(),
                                  html.A("Privacy Policy", className="footer-link", id="privacy-policy-button"),
                                  html.Br(),
-                                 html.A("Contact Developer", className="footer-link", href="mailto:chuan.l.hung@gmail.com")],
+                                 html.A("Contact Developer", className="footer-link", href="mailto:chuan.l.hung@gmail.com"),
+                                 html.Br(), html.Br()],
                         className='footer', id='footer')
 
 # Create list of videos

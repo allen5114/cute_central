@@ -75,6 +75,7 @@ app.index_string = '''
             {%scripts%}
             {%renderer%}
         </footer>
+        <script data-cfasync='false' type='text/javascript' src='//p440896.clksite.com/adServe/banners?tid=440896_863663_4&type=footer&size=37'></script>
     </body>
 </html>
 '''
